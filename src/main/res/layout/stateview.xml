@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/stateview_progress_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/stateview_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom|center_horizontal"
+            android:scaleType="center"
+            android:src="@drawable/progress_circle" />
+
+        <TextView
+            android:id="@+id/stateview_progress_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#9A9A9A"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/stateview_error_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.fpliu.newton.ui.effecttextview.EffectTextView
+            android:id="@+id/stateview_error_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/sp750_30" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <com.fpliu.newton.ui.effecttextview.EffectTextView
+                android:id="@+id/stateview_action_btn"
+                android:layout_width="@dimen/dp750_250"
+                android:layout_height="@dimen/dp750_80"
+                android:gravity="center"
+                android:textSize="@dimen/sp750_30" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
