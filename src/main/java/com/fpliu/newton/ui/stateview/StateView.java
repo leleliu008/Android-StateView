@@ -119,7 +119,7 @@ public class StateView extends RelativeLayout {
 
     /**
      *
-     * @param effectType {@link EffectFactory#TYPE_TYPER}
+     * @param effectType EffectFactory.TYPE_XX
      */
     public void setErrorEffectType(int effectType) {
         errorTV.setEffectType(effectType);
@@ -127,7 +127,7 @@ public class StateView extends RelativeLayout {
 
     /**
      *
-     * @param effectType {@link EffectFactory#TYPE_STROKE}
+     * @param effectType EffectFactory.TYPE_XX
      */
     public void setActionEffectType(int effectType) {
         actionBtn.setEffectType(effectType);
@@ -285,7 +285,7 @@ public class StateView extends RelativeLayout {
             return false;
         }
 
-        Intent intent = null;
+        Intent intent;
         if (Build.VERSION.SDK_INT < 14) {
             intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
         } else {
