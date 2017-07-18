@@ -38,6 +38,8 @@
             android:id="@+id/stateview_error_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp750_30"
+            android:layout_marginRight="@dimen/dp750_30"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@android:color/darker_gray"
