@@ -36,6 +36,8 @@ public class StateView extends RelativeLayout {
 
     private ImageView progressView;
 
+    private ImageView errorIV;
+
     private EffectTextView errorTV;
 
     private EffectTextView actionBtn;
@@ -79,6 +81,8 @@ public class StateView extends RelativeLayout {
         rotateAnimation.setInterpolator(new LinearInterpolator());
 
         errorPanel = findViewById(R.id.stateview_error_panel);
+
+        errorIV = (ImageView) findViewById(R.id.stateview_error_image);
 
         errorTV = (EffectTextView) findViewById(R.id.stateview_error_text);
         errorTV.setTextColor(Color.parseColor("#FF8B02"));
@@ -165,22 +169,23 @@ public class StateView extends RelativeLayout {
         progressPanel.setVisibility(GONE);
 
         if (imageResId == 0) {
-            errorTV.setCompoundDrawablePadding(0);
-            errorTV.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
             if (TextUtils.isEmpty(message)) {
                 errorPanel.setVisibility(GONE);
             } else {
                 errorPanel.setVisibility(VISIBLE);
+                errorIV.setVisibility(GONE);
+                errorTV.setVisibility(VISIBLE);
                 errorTV.setText(message);
                 errorTV.animateText(message);
             }
         } else {
-            errorTV.setCompoundDrawablePadding(20);
-            errorTV.setCompoundDrawablesWithIntrinsicBounds(0, imageResId, 0, 0);
+            errorPanel.setVisibility(VISIBLE);
+            errorIV.setVisibility(VISIBLE);
+            errorIV.setImageResource(imageResId);
             if (TextUtils.isEmpty(message)) {
-                errorPanel.setVisibility(GONE);
+                errorTV.setVisibility(GONE);
             } else {
-                errorPanel.setVisibility(VISIBLE);
+                errorTV.setVisibility(VISIBLE);
                 errorTV.setText(message);
                 errorTV.animateText(message);
             }

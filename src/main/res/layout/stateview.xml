@@ -34,16 +34,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.fpliu.newton.ui.effecttextview.EffectTextView
-            android:id="@+id/stateview_error_text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp750_30"
             android:layout_marginRight="@dimen/dp750_30"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="@dimen/sp750_30" />
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/stateview_error_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside" />
+
+            <com.fpliu.newton.ui.effecttextview.EffectTextView
+                android:id="@+id/stateview_error_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp750_30"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/sp750_30" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/stateview_action_btn_panel"
