@@ -1,16 +1,12 @@
 package com.fpliu.newton.ui.stateview;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -43,13 +40,13 @@ public class StateView extends RelativeLayout {
 
     private EffectTextView actionBtn;
 
+    private LinearLayout actionBtnPanel;
+
     private TextView progressTV;
 
     private View progressPanel;
 
     private View errorPanel;
-
-    private ImageView errorIv;
 
     private RotateAnimation rotateAnimation;
 
@@ -91,11 +88,10 @@ public class StateView extends RelativeLayout {
         actionBtn.setTextColor(Color.parseColor("#82cd72"));
         actionBtn.setEffectType(EffectFactory.TYPE_STROKE);
 
-        errorIv = (ImageView) findViewById(R.id.stateview_error_image);
+        actionBtnPanel = (LinearLayout) findViewById(R.id.stateview_action_btn_panel);
     }
 
     /**
-     *
      * @param typeface {@link Typeface}
      */
     public void setTypeface(Typeface typeface) {
@@ -106,7 +102,6 @@ public class StateView extends RelativeLayout {
     }
 
     /**
-     *
      * @param errorTextColor {@link Color}
      */
     public void setErrorTextColor(int errorTextColor) {
@@ -114,7 +109,6 @@ public class StateView extends RelativeLayout {
     }
 
     /**
-     *
      * @param actionTextColor {@link Color}
      */
     public void setActionTextColor(int actionTextColor) {
@@ -122,7 +116,6 @@ public class StateView extends RelativeLayout {
     }
 
     /**
-     *
      * @param effectType EffectFactory.TYPE_XX
      */
     public void setErrorEffectType(int effectType) {
@@ -130,75 +123,72 @@ public class StateView extends RelativeLayout {
     }
 
     /**
-     *
      * @param effectType EffectFactory.TYPE_XX
      */
     public void setActionEffectType(int effectType) {
         actionBtn.setEffectType(effectType);
     }
 
-    public void setButtonVisibility(boolean isVisibility) {
+    public void setActionButtonVisibility(boolean isVisibility) {
         if (isVisibility) {
-            actionBtn.setVisibility(VISIBLE);
+            actionBtnPanel.setVisibility(VISIBLE);
         } else {
-            actionBtn.setVisibility(GONE);
+            actionBtnPanel.setVisibility(GONE);
         }
     }
 
-    public void showErrorBecauseNoNetworking() {
-        showErrorTextWithAction("没有网络连接，请设置", "设置", () -> startNetSettingActivity(getContext()));
+    public void showErrorImage(int imageResId) {
+        showErrorImageAndTextWithAction(imageResId, null, null, null);
     }
 
-    public void showErrorTextOnly(CharSequence text) {
-        showErrorTextWithAction(text, "", null);
+    public void showErrorText(CharSequence text) {
+        showErrorImageAndTextWithAction(0, text, null, null);
     }
 
-    public void showErrorTextWithAction(CharSequence message, final String actionText, final Runnable action) {
-        state = STATE_ERROR;
-
-        rotateAnimation.cancel();
-        progressView.clearAnimation();
-        progressPanel.setVisibility(GONE);
-
-        errorPanel.setVisibility(VISIBLE);
-        errorIv.setVisibility(GONE);
-        errorTV.setVisibility(VISIBLE);
-        errorTV.setText(message);
-        errorTV.animateText(message);
-
-        if (!TextUtils.isEmpty(actionText) && action != null) {
-            actionBtn.setOnClickListener(v -> action.run());
-            actionBtn.setVisibility(VISIBLE);
-            postDelayed(() -> {
-                if (actionBtn != null) {
-                    actionBtn.setText(actionText);
-                    actionBtn.animateText(actionText);
-                }
-            }, 1000);
-        } else {
-            actionBtn.setVisibility(GONE);
-        }
-    }
-
-    public void showErrorImageOnly(int imageResId) {
-        showErrorImageWithAction(imageResId, "", null);
+    public void showErrorImageAndText(int imageResId, CharSequence text) {
+        showErrorImageAndTextWithAction(imageResId, text, null, null);
     }
 
     public void showErrorImageWithAction(int imageResId, final String actionText, final Runnable action) {
+        showErrorImageAndTextWithAction(imageResId, null, actionText, action);
+    }
+
+    public void showErrorTextWithAction(CharSequence message, final String actionText, final Runnable action) {
+        showErrorImageAndTextWithAction(0, message, actionText, action);
+    }
+
+    public void showErrorImageAndTextWithAction(int imageResId, CharSequence message, final String actionText, final Runnable action) {
         state = STATE_ERROR;
 
         rotateAnimation.cancel();
         progressView.clearAnimation();
         progressPanel.setVisibility(GONE);
 
-        errorPanel.setVisibility(VISIBLE);
-        errorTV.setVisibility(GONE);
-        errorIv.setVisibility(VISIBLE);
-        errorIv.setImageResource(imageResId);
+        if (imageResId == 0) {
+            errorTV.setCompoundDrawablePadding(0);
+            errorTV.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            if (TextUtils.isEmpty(message)) {
+                errorPanel.setVisibility(GONE);
+            } else {
+                errorPanel.setVisibility(VISIBLE);
+                errorTV.setText(message);
+                errorTV.animateText(message);
+            }
+        } else {
+            errorTV.setCompoundDrawablePadding(20);
+            errorTV.setCompoundDrawablesWithIntrinsicBounds(0, imageResId, 0, 0);
+            if (TextUtils.isEmpty(message)) {
+                errorPanel.setVisibility(GONE);
+            } else {
+                errorPanel.setVisibility(VISIBLE);
+                errorTV.setText(message);
+                errorTV.animateText(message);
+            }
+        }
 
         if (!TextUtils.isEmpty(actionText) && action != null) {
             actionBtn.setOnClickListener(v -> action.run());
-            actionBtn.setVisibility(VISIBLE);
+            actionBtnPanel.setVisibility(VISIBLE);
             postDelayed(() -> {
                 if (actionBtn != null) {
                     actionBtn.setText(actionText);
@@ -206,7 +196,7 @@ public class StateView extends RelativeLayout {
                 }
             }, 1000);
         } else {
-            actionBtn.setVisibility(GONE);
+            actionBtnPanel.setVisibility(GONE);
         }
     }
 
@@ -309,34 +299,5 @@ public class StateView extends RelativeLayout {
                 return new SavedState[size];
             }
         };
-    }
-
-    /**
-     * 打开网络设置
-     *
-     * @param context 上下文
-     */
-    private static boolean startNetSettingActivity(Context context) {
-        if (context == null) {
-            return false;
-        }
-
-        Intent intent;
-        if (Build.VERSION.SDK_INT < 14) {
-            intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
-        } else {
-            intent = new Intent(Settings.ACTION_SETTINGS);
-        }
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        try {
-            context.startActivity(intent);
-            return true;
-        } catch (Exception e) {
-            Log.e("StateView", "startNetSettingActivity()", e);
-            return false;
-        }
     }
 }
