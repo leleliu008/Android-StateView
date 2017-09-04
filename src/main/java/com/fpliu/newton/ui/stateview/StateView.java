@@ -85,11 +85,9 @@ public class StateView extends RelativeLayout {
         errorIV = (ImageView) findViewById(R.id.stateview_error_image);
 
         errorTV = (EffectTextView) findViewById(R.id.stateview_error_text);
-        errorTV.setTextColor(Color.parseColor("#FF8B02"));
         errorTV.setEffectType(EffectFactory.TYPE_TYPER);
 
         actionBtn = (EffectTextView) findViewById(R.id.stateview_action_btn);
-        actionBtn.setTextColor(Color.parseColor("#82cd72"));
         actionBtn.setEffectType(EffectFactory.TYPE_STROKE);
 
         actionBtnPanel = (LinearLayout) findViewById(R.id.stateview_action_btn_panel);
