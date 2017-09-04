@@ -85,7 +85,6 @@ public class StateView extends RelativeLayout {
         errorIV = (ImageView) findViewById(R.id.stateview_error_image);
 
         errorTV = (EffectTextView) findViewById(R.id.stateview_error_text);
-        errorTV.setEffectType(EffectFactory.TYPE_TYPER);
 
         actionBtn = (EffectTextView) findViewById(R.id.stateview_action_btn);
         actionBtn.setEffectType(EffectFactory.TYPE_STROKE);
@@ -175,6 +174,9 @@ public class StateView extends RelativeLayout {
                 errorTV.setVisibility(VISIBLE);
                 errorTV.setText(message);
                 if (message.length() <= 10) {
+                    errorTV.noEffect();
+                } else {
+                    errorTV.setEffectType(EffectFactory.TYPE_TYPER);
                     errorTV.animateText(message);
                 }
             }
@@ -188,6 +190,9 @@ public class StateView extends RelativeLayout {
                 errorTV.setVisibility(VISIBLE);
                 errorTV.setText(message);
                 if (message.length() <= 10) {
+                    errorTV.noEffect();
+                } else {
+                    errorTV.setEffectType(EffectFactory.TYPE_TYPER);
                     errorTV.animateText(message);
                 }
             }
