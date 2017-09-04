@@ -174,7 +174,9 @@ public class StateView extends RelativeLayout {
                 errorIV.setVisibility(GONE);
                 errorTV.setVisibility(VISIBLE);
                 errorTV.setText(message);
-                errorTV.animateText(message);
+                if (message.length() <= 10) {
+                    errorTV.animateText(message);
+                }
             }
         } else {
             errorPanel.setVisibility(VISIBLE);
@@ -185,7 +187,9 @@ public class StateView extends RelativeLayout {
             } else {
                 errorTV.setVisibility(VISIBLE);
                 errorTV.setText(message);
-                errorTV.animateText(message);
+                if (message.length() <= 10) {
+                    errorTV.animateText(message);
+                }
             }
         }
 
