@@ -189,7 +189,7 @@ public class StateView extends RelativeLayout {
             } else {
                 errorTV.setVisibility(VISIBLE);
                 errorTV.setText(message);
-                if (message.length() <= 10) {
+                if (message.length() >= 10) {
                     errorTV.noEffect();
                 } else {
                     errorTV.setEffectType(EffectFactory.TYPE_TYPER);
