@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp750_80"
                 android:textColor="@android:color/darker_gray"
+                android:gravity="center"
                 android:textSize="@dimen/sp750_30" />
         </LinearLayout>
 
