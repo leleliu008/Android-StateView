@@ -69,9 +69,9 @@ public class StateView extends RelativeLayout {
 
         LayoutInflater.from(context).inflate(R.layout.stateview, this);
 
-        progressPanel = findViewById(R.id.stateview_progress_panel);
-        progressTV = (TextView) findViewById(R.id.stateview_progress_text);
-        progressView = (ImageView) findViewById(R.id.stateview_progress);
+        progressPanel = findViewById(R.id.state_view_progress_panel);
+        progressTV = (TextView) findViewById(R.id.state_view_progress_text);
+        progressView = (ImageView) findViewById(R.id.state_view_progress);
 
         rotateAnimation = new RotateAnimation(0, 360,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
@@ -80,16 +80,16 @@ public class StateView extends RelativeLayout {
         rotateAnimation.setRepeatCount(Animation.INFINITE);
         rotateAnimation.setInterpolator(new LinearInterpolator());
 
-        errorPanel = findViewById(R.id.stateview_error_panel);
+        errorPanel = findViewById(R.id.state_view_error_panel);
 
-        errorIV = (ImageView) findViewById(R.id.stateview_error_image);
+        errorIV = (ImageView) findViewById(R.id.state_view_error_image);
 
-        errorTV = (EffectTextView) findViewById(R.id.stateview_error_text);
+        errorTV = (EffectTextView) findViewById(R.id.state_view_error_text);
 
-        actionBtn = (EffectTextView) findViewById(R.id.stateview_action_btn);
+        actionBtn = (EffectTextView) findViewById(R.id.state_view_action_btn);
         actionBtn.setEffectType(EffectFactory.TYPE_STROKE);
 
-        actionBtnPanel = (LinearLayout) findViewById(R.id.stateview_action_btn_panel);
+        actionBtnPanel = (LinearLayout) findViewById(R.id.state_view_action_btn_panel);
     }
 
     /**

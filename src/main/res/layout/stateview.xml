@@ -6,13 +6,13 @@
     android:layout_marginRight="@dimen/dp750_80">
 
     <LinearLayout
-        android:id="@+id/stateview_progress_panel"
+        android:id="@+id/state_view_progress_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/stateview_progress"
+            android:id="@+id/state_view_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -21,7 +21,7 @@
             android:src="@drawable/progress_circle" />
 
         <TextView
-            android:id="@+id/stateview_progress_text"
+            android:id="@+id/state_view_progress_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/stateview_error_panel"
+        android:id="@+id/state_view_error_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -44,30 +44,30 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/stateview_error_image"
+                android:id="@+id/state_view_error_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="centerInside" />
+                android:scaleType="centerInside"/>
 
             <com.fpliu.newton.ui.effecttextview.EffectTextView
-                android:id="@+id/stateview_error_text"
+                android:id="@+id/state_view_error_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp750_80"
+                android:layout_marginTop="@dimen/dp750_50"
                 android:textColor="@android:color/darker_gray"
                 android:gravity="center"
                 android:textSize="@dimen/sp750_30" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/stateview_action_btn_panel"
+            android:id="@+id/state_view_action_btn_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_horizontal">
 
             <com.fpliu.newton.ui.effecttextview.EffectTextView
-                android:id="@+id/stateview_action_btn"
+                android:id="@+id/state_view_action_btn"
                 android:layout_width="@dimen/dp750_250"
                 android:layout_height="@dimen/dp750_80"
                 android:gravity="center"
