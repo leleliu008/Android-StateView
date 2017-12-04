@@ -67,7 +67,10 @@ public class StateView extends RelativeLayout {
 
         setBackgroundColor(Color.WHITE);
 
-        LayoutInflater.from(context).inflate(R.layout.stateview, this);
+        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        View view = LayoutInflater.from(context).inflate(R.layout.stateview, this, false);
+        addView(view, lp);
 
         progressPanel = findViewById(R.id.state_view_progress_panel);
         progressTV = (TextView) findViewById(R.id.state_view_progress_text);
