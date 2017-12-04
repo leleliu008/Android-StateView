@@ -14,7 +14,6 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,8 +40,6 @@ public class StateView extends RelativeLayout {
     private EffectTextView errorTV;
 
     private EffectTextView actionBtn;
-
-    private LinearLayout actionBtnPanel;
 
     private TextView progressTV;
 
@@ -91,8 +88,6 @@ public class StateView extends RelativeLayout {
 
         actionBtn = (EffectTextView) findViewById(R.id.state_view_action_btn);
         actionBtn.setEffectType(EffectFactory.TYPE_STROKE);
-
-        actionBtnPanel = (LinearLayout) findViewById(R.id.state_view_action_btn_panel);
     }
 
     /**
@@ -135,9 +130,9 @@ public class StateView extends RelativeLayout {
 
     public void setActionButtonVisibility(boolean isVisibility) {
         if (isVisibility) {
-            actionBtnPanel.setVisibility(VISIBLE);
+            actionBtn.setVisibility(VISIBLE);
         } else {
-            actionBtnPanel.setVisibility(GONE);
+            actionBtn.setVisibility(GONE);
         }
     }
 
@@ -203,7 +198,7 @@ public class StateView extends RelativeLayout {
 
         if (!TextUtils.isEmpty(actionText) && action != null) {
             actionBtn.setOnClickListener(v -> action.run());
-            actionBtnPanel.setVisibility(VISIBLE);
+            actionBtn.setVisibility(VISIBLE);
             postDelayed(() -> {
                 if (actionBtn != null) {
                     actionBtn.setText(actionText);
@@ -211,7 +206,7 @@ public class StateView extends RelativeLayout {
                 }
             }, 1000);
         } else {
-            actionBtnPanel.setVisibility(GONE);
+            actionBtn.setVisibility(GONE);
         }
     }
 
