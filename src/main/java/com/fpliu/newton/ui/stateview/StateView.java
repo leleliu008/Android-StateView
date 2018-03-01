@@ -27,6 +27,8 @@ import com.fpliu.newton.ui.effecttextview.EffectTextView;
  */
 public class StateView extends RelativeLayout {
 
+    public static int bgColor = Color.WHITE;
+
     public static final int STATE_PROGRESS = 1;
 
     public static final int STATE_ERROR = 2;
@@ -62,7 +64,7 @@ public class StateView extends RelativeLayout {
     private void init(Context context) {
         setClickable(true);
 
-        setBackgroundColor(Color.WHITE);
+        setBackgroundColor(bgColor);
 
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
